@@ -1,0 +1,40 @@
+service: shipme
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  login:
+    handler: /v1/functions/login.handler
+    events:
+      - httpApi:
+          path: /api/v1/login
+          method: post
+  register:
+    handler: /v1/functions/register.handler
+    events:
+      - httpApi:
+          path: /api/v1/register
+          method: post
+  verify:
+    handler: /v1/functions/verify.handler
+    events:
+      - httpApi:
+          path: /api/v1/verify
+          method: post
+  # forgot:
+  #   handler: /v1/auth/forgot-password.handler
+  #   events:
+  #     - httpApi:
+  #         path: /api/v1/forgot
+  #         method: post
+  #         cors: true
+
+
+
+
+plugins:
+  - serverless-offline
+
