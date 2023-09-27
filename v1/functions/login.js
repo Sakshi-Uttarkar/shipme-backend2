@@ -1,5 +1,5 @@
 const { sequelize } = require('../config/db.js');
-const {User} = require('../config/databaseModels.js'); // Adjust the path as needed
+const { User } = require('../config/databaseModels.js');
 const { successResponse, errorResponse } = require('../constants/replyResponse.js');
 const jwt = require('jsonwebtoken');
 module.exports.handler = async (event, context) => {
