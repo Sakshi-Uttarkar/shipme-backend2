@@ -1,7 +1,6 @@
 const { Sequelize } = require('sequelize');
 const {sequelize } = require('./db')
 const User = sequelize.define('user', {
-    
     firstName: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -44,5 +43,46 @@ const User = sequelize.define('user', {
         allowNull:true
       },
   });
+const Category = sequelize.define('category', {
+  categoryName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  isActive: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true,
+  },
+  imagePath: {
+    type: Sequelize.STRING,
+  },
+  title: {
+    type: Sequelize.STRING,
+  },
+  content: {
+    type: Sequelize.TEXT,
+  },
+});
+const Service_Area = sequelize.define('delivery_area', {
+  country: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  state: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  isActive: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true,
+  },
+  city: {
+    type: Sequelize.STRING,
+  },
+  area: {
+    type: Sequelize.STRING,
+  },
+});
 
-  module.exports = { User };
+
+
+module.exports = { User, Category, Service_Area };

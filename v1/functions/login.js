@@ -24,10 +24,12 @@ module.exports.handler = async (event, context) => {
         if (body.password !== user.password) {
             return errorResponse('Invalid password.');
         }
+        // console.log('===userInfo', user);
         const token = jwt.sign(
             {
                 userId: user.id,
                 email: user.email,
+                userRole: user.userRole
             },
             'aslkdaslKJkldjkKJkljsklfjlksdaskdjeopfsg55asdLKLkalskd', 
             { expiresIn: '3d' } 

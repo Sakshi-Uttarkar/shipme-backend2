@@ -24,6 +24,30 @@ functions:
       - httpApi:
           path: /api/v1/verify
           method: post
+  add-category:
+    handler: /v1/functions/add-category.handler
+    events:
+      - httpApi:
+          path: /api/v1/add-category
+          method: post
+  category:
+    handler: /v1/functions/category.handler
+    events:
+      - httpApi:
+          path: /api/v1/category
+          method: get
+  add-service-area:
+    handler: /v1/functions/add-service-area.handler
+    events:
+      - httpApi:
+          path: /api/v1/add-service-area
+          method: post
+  delivery-area:
+    handler: /v1/functions/service-area.handler
+    events:
+      - httpApi:
+          path: /api/v1/delivery-area
+          method: get
   # forgot:
   #   handler: /v1/auth/forgot-password.handler
   #   events:

@@ -28,7 +28,7 @@ module.exports.handler = async (event, context) => {
             gender: body.gender,
             email: body.email,
             password: body.password,
-            userRole: "user",
+            userRole: "admin",
             contactNumber: body.contactNumber,
             verificationToken: verificationToken, 
             isVerified: false,

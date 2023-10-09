@@ -1,0 +1,91 @@
+API URL: POST | http://localhost:3000/api/v1/add-service-area
+REQUEST BODY:
+{
+    "country": "India",
+    "isActive": true,
+    "city": "Hubli",
+    "area": [
+        "Vidyanagar",
+        "Old Bus Stand",
+        "Gokul Road",
+        "Keshwapur",
+        "Unkal",
+        "Hosur",
+        "New Cotton Market",
+        "Lamington Road",
+        "Navanagar",
+        "Saptapur"
+    ]
+}
+RESPONSE:
+{
+    "success": true,
+    "data": "Category added successfully"
+}
+
+API URL: GET | http://localhost:3000/api/v1/delivery-area
+RESPONSE:
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "country": "India",
+            "state": "Karnataka",
+            "isActive": true,
+            "city": "Hubli",
+            "area": "[\"vidyanagar\",\"old busstand\"]",
+            "createdAt": "2023-10-09T02:45:29.993Z",
+            "updatedAt": "2023-10-09T02:45:29.993Z"
+        }
+    ]
+}
+
+API URL: GET | http://localhost:3000/api/v1/category
+
+RESPONSE BODY:
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "categoryName": "Sample Category",
+            "isActive": true,
+            "imagePath": "https://ik.imagekit.io/dunzo/home/tr:w-488,h-360_home_icon/operator-FFWUCfzmUzhok89HMYt0ON2Gy5oZECO73gRenPw11HxAeCLBtTBOG8FMqMTe92UOnScOPMUnjYDcaPVxx7wSFJwXJ3kSR3YRsPby4EgC4zW2mVYLc99zuvVh7O2Ppmx2QMQd40UiwYLGhy0OjbMayr.png",
+            "title": "Sample Title",
+            "content": "Sample Content",
+            "createdAt": "2023-10-08T13:38:03.255Z",
+            "updatedAt": "2023-10-08T13:38:03.255Z"
+        },
+        {
+            "id": 2,
+            "categoryName": "Sample Category",
+            "isActive": true,
+            "imagePath": "https://ik.imagekit.io/dunzo/home/tr:w-488,h-360_home_icon/operator-FFWUCfzmUzhok89HMYt0ON2Gy5oZECO73gRenPw11HxAeCLBtTBOG8FMqMTe92UOnScOPMUnjYDcaPVxx7wSFJwXJ3kSR3YRsPby4EgC4zW2mVYLc99zuvVh7O2Ppmx2QMQd40UiwYLGhy0OjbMayr.png",
+            "title": "Sample Title",
+            "content": "Sample Content",
+            "createdAt": "2023-10-08T13:38:20.386Z",
+            "updatedAt": "2023-10-08T13:38:20.386Z"
+        },
+        {
+            "id": 3,
+            "categoryName": "Sample Category",
+            "isActive": true,
+            "imagePath": "https://ik.imagekit.io/dunzo/home/tr:w-488,h-360_home_icon/operator-FFWUCfzmUzhok89HMYt0ON2Gy5oZECO73gRenPw11HxAeCLBtTBOG8FMqMTe92UOnScOPMUnjYDcaPVxx7wSFJwXJ3kSR3YRsPby4EgC4zW2mVYLc99zuvVh7O2Ppmx2QMQd40UiwYLGhy0OjbMayr.png",
+            "title": "Sample Title",
+            "content": "Sample Content",
+            "createdAt": "2023-10-08T13:38:21.394Z",
+            "updatedAt": "2023-10-08T13:38:21.394Z"
+        },
+        {
+            "id": 4,
+            "categoryName": "Sample Category",
+            "isActive": true,
+            "imagePath": "https://ik.imagekit.io/dunzo/home/tr:w-488,h-360_home_icon/operator-FFWUCfzmUzhok89HMYt0ON2Gy5oZECO73gRenPw11HxAeCLBtTBOG8FMqMTe92UOnScOPMUnjYDcaPVxx7wSFJwXJ3kSR3YRsPby4EgC4zW2mVYLc99zuvVh7O2Ppmx2QMQd40UiwYLGhy0OjbMayr.png",
+            "title": "Sample Title",
+            "content": "Sample Content",
+            "createdAt": "2023-10-08T13:38:22.099Z",
+            "updatedAt": "2023-10-08T13:38:22.099Z"
+        }
+    ]
+}
