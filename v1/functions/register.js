@@ -15,9 +15,14 @@ module.exports.handler = async (event, context) => {
         const existingUserWithContactNumber = await User.findOne({
             where: { contactNumber: body.contactNumber },
         });
+        const invalid = {
+            emailInvalidError: "Email address is already in use.",
+            mobileNumberError: "Contact number is already in use."
+        }
+
 
         if (existingUserWithEmail && existingUserWithContactNumber) {
-            return errorResponse('Email address and contact number are already in use.');
+            return errorResponse(invalid);
         } else if (existingUserWithEmail) {
             return errorResponse('Email address is already in use.');
         } else if (existingUserWithContactNumber) {

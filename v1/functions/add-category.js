@@ -4,6 +4,10 @@ const { successResponse, errorResponse } = require('../constants/replyResponse')
 const jwt = require('jsonwebtoken');
 const { verifyToken } = require('../middleware/middleware');
 const fs = require('fs');
+const AWS = require('aws-sdk');
+const multer = require('multer');
+const multerS3 = require('multer-s3');
+const uuid = require('uuid');
 
 
 module.exports.handler = async (event, context) => {
@@ -14,10 +18,24 @@ module.exports.handler = async (event, context) => {
 
     if (decoded.userRole === 'admin') {
         try {
+            const s3 = new AWS.S3();
+            let filename = '';
+            const upload = multer({
+                storage: multerS3({
+                    s3: s3,
+                    bucket: 'category',
+                    acl: 'public-read',
+                    key: function (req, file, cb) {
+                        filename = `${uuid.v4()}_${file.originalname}`;
+                        cb(null, `function/upload/${filename}`);
+                    },
+                }),
+            });
+
             Category.create({
                 categoryName: 'Sample Category',
                 isActive: true,
-                imagePath: 'https://ik.imagekit.io/dunzo/home/tr:w-488,h-360_home_icon/operator-FFWUCfzmUzhok89HMYt0ON2Gy5oZECO73gRenPw11HxAeCLBtTBOG8FMqMTe92UOnScOPMUnjYDcaPVxx7wSFJwXJ3kSR3YRsPby4EgC4zW2mVYLc99zuvVh7O2Ppmx2QMQd40UiwYLGhy0OjbMayr.png',
+                imagePath: filename,
                 title: 'Sample Title',
                 content: 'Sample Content',
             })

@@ -1,15 +1,29 @@
+const AWS = require('aws-sdk');
 const multer = require('multer');
+const multerS3 = require('multer-s3');
+const uuid = require('uuid');
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads/');
+const s3 = new AWS.S3();
+
+const upload = multer({
+    storage: multerS3({
+        s3: s3,
+        bucket: 'category',
+        acl: 'public-read',
+        key: function (req, file, cb) {
+            const filename = `${uuid.v4()}_${file.originalname}`;
+            cb(null, `upload/${filename}`);
     },
-    filename: (req, file, cb) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, file.fieldname + '-' + uniqueSuffix);
-    },
+  }),
 });
 
-const upload = multer({ storage });
+module.exports.uploadFile = upload.single('file');
 
-module.exports = upload;
+module.exports.handler = async (event) => {
+    return {
+        statusCode: 200,
+        body: JSON.stringify({
+            message: 'File uploaded successfully!',
+        }),
+    };
+};

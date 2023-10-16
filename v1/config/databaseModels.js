@@ -80,9 +80,39 @@ const Service_Area = sequelize.define('delivery_area', {
   },
   area: {
     type: Sequelize.STRING,
+
+  },
+});
+
+const Country = sequelize.define('country', {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+});
+const State = sequelize.define('state', {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+});
+const City = sequelize.define('city', {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+});
+const Area = sequelize.define('area', {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  isactive: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true,
   },
 });
 
 
 
-module.exports = { User, Category, Service_Area };
+module.exports = { User, Category, Service_Area, Country, State, City, Area };
