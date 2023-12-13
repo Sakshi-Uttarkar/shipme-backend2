@@ -48,6 +48,24 @@ functions:
       - httpApi:
           path: /api/v1/delivery-area
           method: get
+  user-list:
+    handler: /v1/functions/user-list.handler
+    events:
+      - httpApi:
+          path: /api/v1/user-list
+          method: get
+  delete-user:
+    handler: /v1/functions/delete-user.handler
+    events:
+      - httpApi:
+          path: /api/v1/delete-user
+          method: post
+  edit-user:
+    handler: /v1/functions/edit-user.handler
+    events:
+      - httpApi:
+          path: /api/v1/edit-user
+          method: post
   # forgot:
   #   handler: /v1/auth/forgot-password.handler
   #   events:

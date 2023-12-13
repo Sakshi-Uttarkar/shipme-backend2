@@ -12,6 +12,9 @@ const uuid = require('uuid');
 
 module.exports.handler = async (event, context) => {
     const header = event.headers;
+    if (header.authorization == undefined) {
+        return errorResponse('No token found in header !!');
+    }
     const [bearer, token] = header?.authorization.split(" ");
     const decoded = verifyToken(token);
     await sequelize.sync();
