@@ -1,5 +1,5 @@
 service: shipme
-frameworkVersion: '3'
+frameworkVersion: "3"
 
 provider:
   name: aws
@@ -66,6 +66,18 @@ functions:
       - httpApi:
           path: /api/v1/edit-user
           method: post
+  add-area:
+    handler: /v1/functions/add-area.handler
+    events:
+      - httpApi:
+          path: /api/v1/add-area
+          method: post
+  edit-area:
+    handler: /v1/functions/edit-area.handler
+    events:
+      - httpApi:
+          path: /api/v1/edit-area
+          method: post
   # forgot:
   #   handler: /v1/auth/forgot-password.handler
   #   events:
@@ -74,9 +86,5 @@ functions:
   #         method: post
   #         cors: true
 
-
-
-
 plugins:
   - serverless-offline
-

@@ -1,10 +1,13 @@
-const { sequelize } = require('../config/db');
-const { Area, City, State, Country } = require('../config/databaseModels');
-const { successResponse, errorResponse } = require('../constants/replyResponse');
+const { sequelize } = require("../config/db");
+const { Area, City, State, Country } = require("../config/databaseModels");
+const {
+  successResponse,
+  errorResponse,
+} = require("../constants/replyResponse");
 
 module.exports.handler = async (event, context) => {
-    try {
-        const query = `
+  try {
+    const query = `
                 SELECT
                     a.area_id,
                     a.name AS area_name,
@@ -25,10 +28,12 @@ module.exports.handler = async (event, context) => {
                     country AS cn ON s.country_id = cn.country_id;
             `;
 
-        const areas = await sequelize.query(query, { type: sequelize.QueryTypes.SELECT });
+    const areas = await sequelize.query(query, {
+      type: sequelize.QueryTypes.SELECT,
+    });
 
-        return successResponse(areas);
-    } catch (error) {
-        return errorResponse(error.message);
-    }
+    return successResponse(areas);
+  } catch (error) {
+    return errorResponse(error.message);
+  }
 };

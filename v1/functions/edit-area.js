@@ -1,5 +1,5 @@
 const { sequelize } = require("../config/db");
-const { User } = require("../config/databaseModels");
+const { Area } = require("../config/databaseModels"); // Assuming you have an "Area" model
 const {
   successResponse,
   errorResponse,
@@ -15,27 +15,24 @@ module.exports.handler = async (event, context) => {
   }
   const [bearer, token] = header?.authorization.split(" ");
   const decoded = verifyToken(token);
-  await sequelize.sync();
-  console.log("===sakghghggh===");
+  const body = JSON.parse(event.body);
+  console.log(body);
   if (decoded.userRole === "admin") {
-    const query = await User.findAll({
-      attributes: [
-        "id",
-        "firstName",
-        "lastName",
-        "city",
-        "gender",
-        "email",
-        "contactNumber",
-        "updatedAt",
-      ],
+    const updateData = {
+      name: body.name,
+    };
+    const res = await Area.update(updateData, {
       where: {
-        userRole: "user",
+        area_id: body.area_id,
       },
-      order: ["firstName"],
     });
-
-    return successResponse(query);
+    if (res) {
+      return successResponse("The area details updated successfully");
+    } else {
+      return errorResponse(
+        "Error while updating... Please contact Backend Developer!"
+      );
+    }
   } else {
     return errorResponse("You are not authorized to access this endpoint.");
   }

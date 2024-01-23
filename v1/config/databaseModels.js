@@ -1,49 +1,48 @@
-const { Sequelize } = require('sequelize');
-const {sequelize } = require('./db')
-const User = sequelize.define('user', {
-    firstName: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    lastName: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    city: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      gender: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      password: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      userRole: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      contactNumber: {
-        type: Sequelize.BIGINT,
-        allowNull: false,
-      },
-      verificationToken : {
-        type:Sequelize.STRING, 
-        allowNull: true
-
-      }, 
-      isVerified : {
-        type: Sequelize.BOOLEAN,
-        allowNull:true
-      },
-  });
-const Category = sequelize.define('category', {
+const { Sequelize } = require("sequelize");
+const { sequelize } = require("./db");
+const User = sequelize.define("user", {
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  city: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  gender: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  email: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  password: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  userRole: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  contactNumber: {
+    type: Sequelize.BIGINT,
+    allowNull: false,
+  },
+  verificationToken: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
+  isVerified: {
+    type: Sequelize.BOOLEAN,
+    allowNull: true,
+  },
+});
+const Category = sequelize.define("category", {
   categoryName: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -62,7 +61,7 @@ const Category = sequelize.define('category', {
     type: Sequelize.TEXT,
   },
 });
-const Service_Area = sequelize.define('delivery_area', {
+const Service_Area = sequelize.define("delivery_area", {
   country: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -80,39 +79,51 @@ const Service_Area = sequelize.define('delivery_area', {
   },
   area: {
     type: Sequelize.STRING,
-
   },
 });
 
-const Country = sequelize.define('country', {
+const Country = sequelize.define("country", {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
   },
 });
-const State = sequelize.define('state', {
+const State = sequelize.define("state", {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
   },
 });
-const City = sequelize.define('city', {
+const City = sequelize.define("city", {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
   },
 });
-const Area = sequelize.define('area', {
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false,
+const Area = sequelize.define(
+  "area",
+  {
+    name: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    city_id: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
+    isactive: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: true,
+    },
+    area_id: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
   },
-  isactive: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: true,
-  },
-});
-
-
+  {
+    freezeTableName: true,
+    timestamps: false,
+  }
+);
 
 module.exports = { User, Category, Service_Area, Country, State, City, Area };
