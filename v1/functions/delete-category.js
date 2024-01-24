@@ -1,5 +1,5 @@
 const { sequelize } = require("../config/db");
-const { Area } = require("../config/databaseModels");
+const { Category } = require("../config/databaseModels");
 const {
   successResponse,
   errorResponse,
@@ -16,22 +16,21 @@ module.exports.handler = async (event, context) => {
   const [bearer, token] = header?.authorization.split(" ");
   const decoded = verifyToken(token);
   const body = JSON.parse(event.body);
-  console.log(body);
+  const area_id = body.id;
+
   if (decoded.userRole === "admin") {
-    const updateData = {
-      name: body.name,
-    };
-    const res = await Area.update(updateData, {
-      where: {
-        area_id: body.area_id,
-      },
-    });
-    if (res) {
-      return successResponse("The area details updated successfully");
-    } else {
-      return errorResponse(
-        "Error while updating... Please contact Backend Developer!"
-      );
+    try {
+      const existingUser = await Category.findByPk(area_id);
+
+      if (!existingUser) {
+        return errorResponse("Category not found", 404);
+      }
+      await existingUser.destroy();
+
+      return successResponse("Category deleted successfully");
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      return errorResponse("Internal Server Error", 500);
     }
   } else {
     return errorResponse("You are not authorized to access this endpoint.");

@@ -60,6 +60,12 @@ functions:
       - httpApi:
           path: /api/v1/delete-user
           method: post
+  delete-area:
+    handler: /v1/functions/delete-area.handler
+    events:
+      - httpApi:
+          path: /api/v1/delete-area
+          method: post
   edit-user:
     handler: /v1/functions/edit-user.handler
     events:

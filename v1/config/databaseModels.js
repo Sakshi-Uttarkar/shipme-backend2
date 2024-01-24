@@ -118,6 +118,7 @@ const Area = sequelize.define(
     area_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
+      primaryKey: true,
     },
   },
   {
