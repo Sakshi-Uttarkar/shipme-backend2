@@ -19,11 +19,11 @@ module.exports.handler = async (event, context) => {
   console.log(body);
   if (decoded.userRole === "admin") {
     const updateData = {
-      name: body.name,
+      name: body.areaName,
     };
     const res = await Area.update(updateData, {
       where: {
-        area_id: body.area_id,
+        area_id: body.areaId,
       },
     });
     if (res) {

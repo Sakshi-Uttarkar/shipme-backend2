@@ -47,6 +47,11 @@ const Category = sequelize.define("category", {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  id: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    primaryKey: true,
+  },
   isActive: {
     type: Sequelize.BOOLEAN,
     defaultValue: true,

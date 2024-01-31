@@ -16,11 +16,11 @@ module.exports.handler = async (event, context) => {
   const [bearer, token] = header?.authorization.split(" ");
   const decoded = verifyToken(token);
   const body = JSON.parse(event.body);
-  const area_id = body.id;
+  const id = body.id;
 
   if (decoded.userRole === "admin") {
     try {
-      const existingUser = await Category.findByPk(area_id);
+      const existingUser = await Category.findByPk(id);
 
       if (!existingUser) {
         return errorResponse("Category not found", 404);

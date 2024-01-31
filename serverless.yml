@@ -66,6 +66,12 @@ functions:
       - httpApi:
           path: /api/v1/delete-area
           method: post
+  delete-category:
+    handler: /v1/functions/delete-category.handler
+    events:
+      - httpApi:
+          path: /api/v1/delete-category
+          method: post
   edit-user:
     handler: /v1/functions/edit-user.handler
     events:
