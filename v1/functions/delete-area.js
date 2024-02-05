@@ -8,15 +8,17 @@ const jwt = require("jsonwebtoken");
 const { verifyToken } = require("../middleware/middleware");
 const fs = require("fs");
 
-module.exports.handler = async (event, context) => {
-  const header = event.headers;
+const deleteAreaHandler = async (event, headers) => {
+  const body = event;
+  const header = headers;
+
   if (header.authorization == undefined) {
     return errorResponse("No token found in header !!");
   }
   const [bearer, token] = header?.authorization.split(" ");
   const decoded = verifyToken(token);
-  const body = JSON.parse(event.body);
-  const area_id = body.id;
+  // const body = JSON.parse(event.body);
+  const area_id = body.area_id;
 
   if (decoded.userRole === "admin") {
     try {
@@ -36,3 +38,5 @@ module.exports.handler = async (event, context) => {
     return errorResponse("You are not authorized to access this endpoint.");
   }
 };
+
+module.exports = { deleteAreaHandler };

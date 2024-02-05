@@ -5,7 +5,7 @@ const {
   errorResponse,
 } = require("../constants/replyResponse");
 
-module.exports.handler = async (event, context) => {
+const serviceAreaHandler = async (event, context) => {
   try {
     const query = `
                 SELECT
@@ -37,3 +37,4 @@ module.exports.handler = async (event, context) => {
     return errorResponse(error.message);
   }
 };
+module.exports = { serviceAreaHandler };

@@ -6,9 +6,9 @@ const {
   errorResponse,
 } = require("../constants/replyResponse");
 
-module.exports.handler = async (event, context) => {
-  const body = JSON.parse(event.body);
-  const header = event.headers;
+const addAreaHandler = async (event, headers) => {
+  const body = event;
+  const header = headers;
 
   if (header.authorization == undefined) {
     return errorResponse("No token found in header !!");
@@ -36,3 +36,4 @@ module.exports.handler = async (event, context) => {
     return successResponse(areas);
   }
 };
+module.exports = { addAreaHandler };
