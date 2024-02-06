@@ -3,6 +3,7 @@ const app = express();
 const serviceAreaHandler = require("./v1/functions/service-area");
 const addAreaHandler = require("./v1/functions/add-area");
 const deleteAreaHandler = require("./v1/functions/delete-area");
+const loginHandler = require("./v1/functions/login");
 const cors = require("cors");
 const bodyParser = require("body-parser"); // configure the app to use bodyParser()
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -50,6 +51,16 @@ app.post("/api/v1/delete-area", async (req, res) => {
       req.body,
       req.headers
     );
+    res.status(result.statusCode).json(JSON.parse(result.body));
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+app.post("/api/v1/login", async (req, res) => {
+  console.log(req.headers);
+  try {
+    const result = await loginHandler.loginHandler(req.body, req.headers);
     res.status(result.statusCode).json(JSON.parse(result.body));
   } catch (error) {
     console.error(error);

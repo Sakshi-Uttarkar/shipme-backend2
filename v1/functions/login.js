@@ -5,8 +5,10 @@ const {
   errorResponse,
 } = require("../constants/replyResponse.js");
 const jwt = require("jsonwebtoken");
-module.exports.handler = async (event, context) => {
-  const body = JSON.parse(event.body);
+
+const loginHandler = async (event, context) => {
+  console.log(event);
+  const body = event;
   await sequelize.authenticate();
   try {
     const user = await User.findOne({
@@ -42,3 +44,4 @@ module.exports.handler = async (event, context) => {
     return errorResponse(error.message);
   }
 };
+module.exports = { loginHandler };
